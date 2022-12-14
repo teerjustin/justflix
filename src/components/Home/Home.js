@@ -10,33 +10,8 @@ const Home = () => {
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
-        fetchData()
+        fetchData();
     },[]);
-
-    // useEffect(() => {
-    // const getMovies = async () => {
-    //     // let response = await fetch("http://localhost:5000/getmovies");
-    //     // console.log("this is response.data", response.data);
-    //     const promise3  = await fetch("http://localhost:5000/getmovies")
-    //     const results = await Promise.allSettled([promise3])
-    //     console.log(results)
-    //     setMovies(results.data)
-    // }
-    // getMovies(); // run it, run it
-
-    // // return () => {};
-    // }, []);
-
-    // useEffect(() => {
-    //     const moviePromises = (() => {
-    //         fetch("http://localhost:5000/getmovies")
-    //     })
-    //     Promise.all(moviePromises)
-    //     .then((data) => { 
-    //         console.log(data)
-    //         setMovies(data) 
-    //     });
-    // }, [])
 
     async function fetchData() {
         await axios.get('http://localhost:5000/getmovies')
@@ -53,8 +28,7 @@ const Home = () => {
           .catch(function (error) {
             console.log(error.message);
           });
-
-    }
+    };
 
     return (
         <>
