@@ -1,0 +1,99 @@
+
+.wrapper {
+    display: grid;
+    gap: 10px;
+}
+.header-z {
+    background-color: black;
+    color: red;
+    width: 96%;
+    font-size: 3rem;
+    align-items: center;
+    text-align: left;
+    padding: 10px 40px;
+}
+
+.main-content {
+    margin: auto;
+    width: 20%;
+    height: 600px;
+    background-color: rgb(66, 66, 66);
+    color: white;
+    text-align: left;
+    padding: 50px;
+}
+
+.inputs {
+    border-radius: 105px;
+    height: 100px;
+    /* background-color: black; */
+}
+
+
+.inputText {
+    width: 98%;
+    height: 20px;
+}
+
+.submit-button {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 5px;
+    color: white;
+    background-color: red;
+    font-size: 16px;
+    height: 50px;
+    border-color: transparent;
+}
+
+.under-submit {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+a, a:link, a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.sign-up {
+    margin-top: 50px;
+}
+#sign-up {
+    color: white;
+}
+
+.bottom {
+    background-color: grey;
+    display: grid;
+    align-items: center;
+    align-content: center;
+    /* margin: auto; */
+    width: 100%;
+    height: 200px;
+    justify-content: center;
+    /* padding-left: 15%; */
+    padding-top: 20px;  
+    font-size: 18px;
+}
+
+
+
+.bottom-list {
+    width: 100%;
+}
+
+ul {
+    font-size: 15px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    gap: 40px;
+    border: 5px solid;
+    display: flex;
+    /* justify-content: center; */
+  }
