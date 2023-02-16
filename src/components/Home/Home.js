@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -6,53 +6,86 @@ import Navbar from 'react-bootstrap/Navbar';
 import Movie from '../Movie';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css'
+import MovieContext, { MovieProvider } from '../MovieContext/movieContext';
+import GenreContext, { GenreProvider} from '../GenreContext/genreContext';
+
+
+const MovieHomeWrapper = () => {
+  return (
+  <MovieProvider>
+    <GenreProvider>
+      <Home/>
+    </GenreProvider>
+  </MovieProvider>
+  )
+}
+
+
 
 const Home = () => {
-    // const [user, setUser] = useState({
-    //     'name': 'Justin'
-    // });
     const [movies, setMovies] = useState([]);
-
     const [feed, setFeed] = useState([])
+    const [genres, setGenres] = useState([])
+    const [genresLoaded, setGenresLoaded] = useState(false);
+
     const [count, setCount] = useState(5)
     const [index, setIndex] = useState(0)
 
-    useEffect(() => {
-        fetchData();
-    },[]);
+    const allMovies = useContext(MovieContext)
+    const allGenres = useContext(GenreContext)
 
     useEffect(() => {
-      console.log('Count is now: ', count);
-    },[count]);
+      console.log("idk all movies")
+      if (allMovies) {
+        setFeed(allMovies.data.slice(0,5))
+      }
+    }, [allMovies])
 
     useEffect(() => {
-      console.log('Index is now: ', index);
-    },[index]);
+      console.log("ALL GENRES AAHHHH")
+      if (allGenres) {
+        setGenres(allGenres)
+        setGenresLoaded(true)
+      }
+    }, [allGenres])
+    
+    // console.log("does this work?", allMovies)
+    // console.log("does this work!!!@!@!@", feed, allMovies )
 
-    async function fetchData() {
-        await axios.get('http://localhost:5000/getmovies')
-          .then(function (response) {
-            console.log("THIS IS MY RESPONSE: ", response.data);
-            if (response.data.status_code === 200) {
-                console.log(response.data)
-                setMovies(response.data.data)
-                setFeed(response.data.data.slice(0, 5))
 
-            } else {
-                //SHOULD POP UP ERROR OR INVALID
-                console.log("dont work")
-            }
-          })
-          .catch(function (error) {
-            console.log(error.message);
-          });
-    };
+    // useEffect(() => {
+    //   console.log('Count is now: ', count);
+    // },[count]);
+
+    // useEffect(() => {
+    //   console.log('Index is now: ', index);
+    // },[index]);
+
+    // async function fetchData() {
+    //     await axios.get('http://localhost:5000/getmovies')
+    //       .then(function (response) {
+    //         console.log("THIS IS MY RESPONSE: ", response.data);
+    //         if (response.data.status_code === 200) {
+    //             console.log(response.data)
+    //             setMovies(response.data.data)
+    //             setFeed(response.data.data.slice(0, 5))
+    //             setGenreFeed([])
+
+    //         } else {
+    //             //SHOULD POP UP ERROR OR INVALID
+    //             console.log("dont work")
+    //         }
+    //       })
+    //       .catch(function (error) {
+    //         console.log(error.message);
+    //       });
+    // };
 
     const handleClick = (event) => {
       if (count !== movies.length) {
         setCount(prevCount => prevCount + 1);
         setIndex(prevCount => prevCount + 1);
-        setFeed(movies.slice(index, count))
+        setFeed(allMovies.data.slice(index, count))
       }
     };
 
@@ -60,10 +93,12 @@ const Home = () => {
       if (index !== 0) {
         setCount(prevCount => prevCount - 1);
         setIndex(prevCount => prevCount - 1);
-        setFeed(movies.slice(index, count))
+        setFeed(allMovies.data.slice(index, count))
       }
     };
-    
+
+    console.log('asd', genres)
+
     return (
         <>
             <Navbar bg="dark" variant="dark">
@@ -96,15 +131,38 @@ const Home = () => {
                 {feed.map((filteredItem) => {
                     return (
                       <Movie
+                        key={filteredItem.title}
                         title={filteredItem.title}
                         poster={filteredItem.poster}
+                        genre={filteredItem.genre}
                       />
                     )
                 })}
                 <button onClick={handleClick}/>
-            </div>
+
+                Genres: {genresLoaded && Object.entries(genres).forEach(([k, v]) => {
+                    console.log('kv', k, v)
+                    const genre = k;
+                    const movies = v;
+                    console.log('test:',genre, movies)
+                    return (
+                      <div>
+                        <div className="genres-list">
+                          Genre: {genre}
+                        </div>
+                        <div className="movies-list">
+                          Movie: {movies.map((m) => {
+                            console.log('this is m!:', m.title)
+                            return (
+                              m.title
+                            )
+                            })}
+                        </div>
+                      </div>
+                  )})}
+              </div>
         </>
     )
 }
 
-export default Home;
+export default MovieHomeWrapper;

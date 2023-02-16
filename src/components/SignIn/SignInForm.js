@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 // import './styles.css'
 
 const SignInForm = () => {
+    console.log("IN SIGN IN FORM")
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [invalid, setInvalid] = useState('');

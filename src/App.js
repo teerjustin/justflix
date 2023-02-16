@@ -7,7 +7,8 @@ import {
 
 
 import SignInForm from "./components/SignIn/SignInForm";
-import Home from "./components/Home/Home";
+
+import MovieHomeWrapper from "./components/Home/Home";
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<SignInForm/>} />
-        <Route path="/browse" element={<Home />}></Route>
+        <Route path="/browse" element={<MovieHomeWrapper />}></Route>
       </Routes>
       
     </Router>
