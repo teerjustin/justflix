@@ -1,3 +1,28 @@
 .home-body {
     display: flex;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-container {
+    display: flex;
+}
+
+.genre-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.genre-header {
+    display: flex;
+}
+
+.genre-movies {
+    flex-direction: row;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+}

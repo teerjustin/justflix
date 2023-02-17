@@ -127,20 +127,51 @@ const Home = () => {
                 })} */}
                 {/* asdasd */}
                 <br />
-                <button onClick={handleLeftClick}/>
-                {feed.map((filteredItem) => {
-                    return (
-                      <Movie
-                        key={filteredItem.title}
-                        title={filteredItem.title}
-                        poster={filteredItem.poster}
-                        genre={filteredItem.genre}
-                      />
-                    )
-                })}
-                <button onClick={handleClick}/>
+                
+                <div className="container">
+                  <div className="movie-container">
+                    <button onClick={handleLeftClick}/>
+                    {feed.map((filteredItem) => {
+                        return (
+                          <Movie
+                            key={filteredItem.title}
+                            title={filteredItem.title}
+                            poster={filteredItem.poster}
+                            genre={filteredItem.genre}
+                          />
+                        )
+                    })}
+                    <button onClick={handleClick}/>
+                  </div>
 
-                Genres: {genresLoaded && Object.entries(genres).forEach(([k, v]) => {
+
+                  <div className="genre-container">
+                    { 
+                      Object.keys(genres).map((header, i) => (
+                          <div key={i}>
+                              <div className="genre-header"> 
+                                {header}
+                              </div>
+
+                              <div className="genre-movies">
+                                {Object.values(genres[header]).map((movie, k) => {
+                                  console.log("this is item: ", genres[header], movie, k)
+                                  return (
+                                    <Movie
+                                    title={movie.title}
+                                    poster={movie.poster}
+                                    />
+                                  )
+                                })} 
+                              </div>
+                          </div>
+                      ))
+                    }
+                  </div>
+                </div>
+
+
+                {/* Genres: {genresLoaded && Object.entries(genres).forEach(([k, v]) => {
                     console.log('kv', k, v)
                     const genre = k;
                     const movies = v;
@@ -148,7 +179,7 @@ const Home = () => {
                     return (
                       <div>
                         <div className="genres-list">
-                          Genre: {genre}
+                          Genre: {genre} {k}
                         </div>
                         <div className="movies-list">
                           Movie: {movies.map((m) => {
@@ -159,7 +190,10 @@ const Home = () => {
                             })}
                         </div>
                       </div>
-                  )})}
+                  )})} */}
+
+
+                    
               </div>
         </>
     )
