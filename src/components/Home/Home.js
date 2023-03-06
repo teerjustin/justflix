@@ -103,8 +103,8 @@ const Home = () => {
         <>
             <Navbar bg="dark" variant="dark">
               <Container>
-                <Navbar.Brand href="#home">Netflix</Navbar.Brand>
                 <Nav className="me-auto">
+                  <Navbar.Brand href="#home">Netflix</Navbar.Brand>
                   <Nav.Link href="#">TV Shows</Nav.Link>
                   <Nav.Link href="#">Movies</Nav.Link>
                   <Nav.Link href="#">New & Popular</Nav.Link>
@@ -129,7 +129,7 @@ const Home = () => {
                 <br />
                 
                 <div className="container">
-                  <div className="movie-container">
+                  {/* <div className="movie-container">
                     <button onClick={handleLeftClick}/>
                     {feed.map((filteredItem) => {
                         return (
@@ -142,13 +142,13 @@ const Home = () => {
                         )
                     })}
                     <button onClick={handleClick}/>
-                  </div>
+                  </div> */}
 
 
                   <div className="genre-container">
                     { 
                       Object.keys(genres).map((header, i) => (
-                          <div key={i}>
+                          <div className="genre-container-container" key={i}>
                               <div className="genre-header"> 
                                 {header}
                               </div>
@@ -157,10 +157,12 @@ const Home = () => {
                                 {Object.values(genres[header]).map((movie, k) => {
                                   console.log("this is item: ", genres[header], movie, k)
                                   return (
-                                    <Movie
-                                    title={movie.title}
-                                    poster={movie.poster}
-                                    />
+                                    <a href={'/watch/' + movie.imbd_id}>
+                                      <Movie
+                                      title={movie.title}
+                                      poster={movie.poster}
+                                      />
+                                    </a>
                                   )
                                 })} 
                               </div>

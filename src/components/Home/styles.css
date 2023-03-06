@@ -1,10 +1,13 @@
 .home-body {
     display: flex;
+    background-color: #141414;
 }
 
 .container {
     display: flex;
     flex-direction: column;
+    margin: 0;
+    padding: 0;
 }
 
 .movie-container {
@@ -17,6 +20,8 @@
 }
 
 .genre-header {
+    color: white;
+    font-size: 1.5rem;
     display: flex;
 }
 
@@ -25,4 +30,15 @@
     display: flex;
     flex-wrap: nowrap;
     overflow-x: scroll;
+    width: 100%;
+}
+
+.genre-container-container {
+    margin: 20px;
+    width: 1650px;
+    padding: 50px;
+}
+
+.movies {   
+    margin: 0 10px 0 0;
 }
